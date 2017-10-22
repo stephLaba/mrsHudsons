@@ -1,20 +1,47 @@
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+// ================================
+// Clearfix
+// ================================
+
+@z-index-high: 9999999;
+
+//Z-index End
+
+
 //Variables
 
 @white: #ffffff;
 @black: #000000;
 @golden: #F2BE46;
 @ochre: #966C0C;
+@lOchre: #CBB686;
 @plum: #201119;
 @wine: #651A41;
 
 @gray01: #5A5B68;
 @gray02: #9B9B9B;
+@gray03: #F2F1F0;
+
 //Colors End
 
 @xbold: 900;
 @bold: 800;
 @regular: 400;
 @light: 300;
+@lighter: 200;
 @link-spacing: 2.5px;
 
 @copy: "Lato", "Lucida Grande", sans-serif;
@@ -27,6 +54,10 @@
 
 .text--bold {
   font-weight: @bold;
+}
+
+.text--center {
+  text-align: center;
 }
 
 .padding-medium {
@@ -43,6 +74,31 @@
   }
 }
 
+@transition: all ease-in-out 0.3s;
+
+
+
+//START: MEDIA QUERIES
+//====================
+
+@highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
+              ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
+  
+              ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
+  
+              ~"only screen and (min-device-pixel-ratio: 1.5)";
+
+@mobile:      ~"only screen and (max-width: 529px)";
+
+@tablet:      ~"only screen and (max-width: 949px)";
+
+@desktop:     ~"only screen and (max-width: 1128px)";
+
+@desktop-xl:  ~"only screen and (min-width: 1129px)";
+
+  
+    
+
 //Global Elements: Start
 // ======================
 
@@ -50,7 +106,24 @@ html, body {
   overflow-x: hidden;
 }
 
+body {
+  background-color: @white;
+}
+
 //solves horizontal scrolling bug on desktop
+
+
+a,  
+p a,
+p > strong > a{
+  opacity: 1;
+  transition: @transition;
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
+}
 
 .Header--top {
   background: @white;
@@ -84,6 +157,10 @@ html, body {
   font-size: 12px;
 }
 
+.Intro {
+  background: @white;
+}
+
 
 .Footer {
   background-color: @plum;
@@ -101,6 +178,36 @@ html, body {
   display: none;
 }
 
+// Mobile Nav: Start
+// ========================
+
+nav.Mobile-overlay-nav.Mobile-overlay-nav--primary {
+  margin: 40px 0 0 0;
+
+  a {
+    padding: 20px 0;
+    color: @ochre !important;
+    opacity: 1;
+    transition: @transition;
+
+
+    &:hover, 
+    &:active {
+      opacity: 0.8;
+    }
+  }
+}
+
+
+
+body.is-mobile-overlay-active {
+  z-index: 0 !important;
+  position: static;
+}
+
+
+
+
 
 // Cover Page Styles: Start
 // ========================
@@ -109,8 +216,9 @@ html, body {
 #collection-59d0faf7f9a61e37e89fcc52 .Mobile-bar--top, .Mobile-bar--bottom {
     display: none !important;
   }
+
 #collection-59d0faf7f9a61e37e89fcc52 {
-    background: #966C0C;
+    background-color: @ochre;
     header {
      display: none !important;
       height: 0;
@@ -241,6 +349,24 @@ display:flex;
 }
 
 #page-59d8d9fca8b2b06fbe035d68 {
+  
+  .sqs-block-image .design-layout-card:not(.sqs-narrow-width) {
+        @media @tablet {
+          float: none;
+          margin: 0 auto;
+          display: block;
+          
+          > div {
+            width: 100%;
+          }
+        }
+  }
+  .sqs-block-image .design-layout-card .image-card {
+    @media @tablet {
+      padding: 3% 0;
+    }
+  }
+  
   .sqs-block-image {
     &:first-child {
       background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d8de13e45a7c0ce23d55a3/1507384858138/Bkg.jpg;) no-repeat;
@@ -251,6 +377,21 @@ display:flex;
       float: right;
       padding-right: 40px;
         max-width: 400px;
+        
+         @media @tablet {
+          float: none;
+          margin: 0 auto;
+           padding-right: 0;
+           max-width: 280px;
+        }
+      }
+
+      // END: FIRST BOOK IMAGE
+      
+      .sqs-block-image .design-layout-card:not(.sqs-narrow-width).image-position-left .image-card-wrapper {
+          @media @tablet {
+          padding: 0;
+        }
       }
       
       .image-title {
@@ -316,12 +457,25 @@ display:flex;
         text-align: center;
         display: inline-block;
         letter-spacing: normal;
+        opacity: 1;
+        transition: @transition;
+
+        &:hover,
+        &:active {
+            opacity: 0.6;
+        }
       }
     }
   }
   
   .sqs-block-image .design-layout-card .image-card-wrapper {
     background: transparent;
+  }
+
+  .image-subtitle-wrapper {
+      @media @mobile {
+          padding: 0;
+        }
   }
   
   .image-subtitle {
@@ -333,6 +487,12 @@ display:flex;
   }
 }
 
+.sqs-block-image .design-layout-card:not(.sqs-narrow-width).image-position-left .image-card-wrapper {
+      @media @tablet {
+          margin-left: 0;
+        }
+}
+
 //END: Hero banner
 //============================
 
@@ -340,11 +500,12 @@ display:flex;
   max-width: 1100px;
   padding: 0 20px;
   margin: 0 auto;
+
   h4 {
     text-align: center;
     font-size: 20px;
     font-family: @display;
-    color: @black;
+    color: @gray01;
     background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d91508d2b857b11af96ee9/1507398920830/Key--yellow.png) no-repeat;
     background-size: contain;
     background-position: center;
@@ -371,6 +532,20 @@ display:flex;
 }
 
 //END: blog header
+
+
+.summary-item {
+  opacity: 1;
+  transition: @transition; 
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
+}
+          
+          
+
 .summary-item-list-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -388,12 +563,17 @@ display:flex;
         font-size: 20px;
       }
     }
-    
-    .summary-metadata.summary-metadata--primary {
-      position: absolute;
-      bottom: 40px;
-    }
   }
+
+  .sqs-block-summary-v2 .summary-content {
+    position: relative;
+  }
+
+  .sqs-block-summary-v2 .summary-block-setting-metadata-position-below-content .summary-metadata-container--below-content {
+    position: absolute;
+    top: -20px;
+  }
+
   //END: Blog Section
 
 .image-card.sqs-dynamic-text-container{
@@ -404,13 +584,47 @@ display:flex;
 
 #block-yui_3_17_2_14_1507391788589_29356,  {
   background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d9230ce9bfdf464d3a7481/1507402517793/Bkg_faded.png) no-repeat;
-  background-size: contain;
   background-size: 70%;
   
+    @media @tablet {
+      background-size: cover;
+      background-position-x: 40%;
+    } 
 }
+
+// End: Memoir Block
+// =================
+
+#collection-59d8d9fca8b2b06fbe035d68 .sqs-block#block-yui_3_17_2_2_1507403039191_37589 > .sqs-block-content {
+   @media @tablet {
+      padding: 4% 0 10% 0;
+    }
+  
+  .image-title {
+     @media @tablet {
+      padding: 5% 0 0 0;
+    }
+  }
+}
+// End: Author Block
+// =================
 
 #block-yui_3_17_2_14_1507391788589_29356,#block-yui_3_17_2_2_1507403039191_37589  {
  .image-card-wrapper  {
+
+
+  .image-title-wrapper {
+    
+    @media @mobile {
+      padding: 0 !important; 
+
+      p {
+        font-size: 20px;
+        line-height: 0;
+      }
+    }
+  }
+
    .image-title {
        p{
        color: @ochre;
@@ -427,17 +641,17 @@ display:flex;
       color: @gray01;
     }
   a {
-    color: @ochre !important;
-    font-family: @copy;
-    border-bottom: none;
-    border-color: transparent;
-    text-transform: uppercase;
-    font-size: 10px !important;
-    letter-spacing:@link-spacing;
-    width: 100%;
-    float: left;
-    font-weight: @light;
-    font-size: 12px !important;
+      color: @ochre !important;
+      font-family: @copy;
+      border-bottom: none;
+      border-color: transparent;
+      text-transform: uppercase;
+      font-size: 10px !important;
+      letter-spacing:@link-spacing;
+      width: 100%;
+      float: left;
+      font-weight: @light;
+      font-size: 12px !important;
   }
 }
     img {
@@ -455,17 +669,300 @@ display:flex;
 
 //END: About Memoirs + Meet Mrs Hudson
 
+//===============================
+
+#block-yui_3_17_2_2_1508187351309_8974 {
+  background-image:url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e528e7f09ca459f2c8493c/1508190444034/british_street.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 350px;
+  background-position: center;
+  background-attachment: fixed;
+
+  @media mobile {
+    background-attachment: scroll;
+  }
+  
+} 
+
+.section--sherlock {
+  .inner-wrapper {
+    width: 561px;
+    margin: 0 auto;
+    padding: 3%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+     @media @mobile {
+      width: 80%;
+      margin: 0 auto;
+      padding: 70px 0 40px 0;
+    }
+   
+    h3, 
+    h4 {
+        color: @white;
+    }
+
+    h3 {
+      opacity: 0.58;
+    }
+
+    h4 {
+      font-size:26px;
+      font-family: @display;
+      font-style: italic;
+      font-weight: @lighter;
+      margin: 10px 0 40px 0;
+    }
+
+    .one {
+      a {
+        background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e53326f14aa11f3d783a83/1508193062827/pipe-light.png);
+      }
+    }
+    
+        .two {
+      a {
+        background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e535121f318ddbb0f8647a/1508193554870/lens-light.png);
+      }
+    }
+    
+          .three {
+      a {
+        background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e5351632601ea72218d116/1508193558636/telescope-light.png);
+      }
+    }
+    
+          .four {
+      a {
+        background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e53519d7bdce3a01a0cabf/1508193561656/violin-light.png);
+      }
+    }
+
+    .fourth {
+      width: 25%;
+      float: left;
+
+         @media @mobile {
+          width: 50%;
+          margin-bottom: 30px;
+
+          &:last-child {
+            margin-bottom: none;
+          }
+
+          &:nth-child(3) {
+            margin-bottom: none;
+          }
+           
+           a {
+             max-width: 85px;
+             margin: 0 auto;
+           }
+        }
+
+      a {
+        font-family: @display;
+        color: @white;
+        display: block;
+        padding: 20px 30px;
+        text-align: center;
+        transition: @transition;
+        opacity: 1;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 35px;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+//START: Newsletter Form
+//==============================
+
+
+.newsletter-block .newsletter-form-wrapper--alignCenter.newsletter-form-wrapper {
+  @media @mobile { 
+    padding: 0;
+    width: 100%;
+
+  }
+
+}
+
+#block-yui_3_17_2_2_1508187351309_9482 {
+  .newsletter-form {
+    background-color: @white;
+    max-width: 774px;
+    margin: 0 auto;
+    padding: 100px 40px;
+
+    .newsletter-form-header {
+      @media @mobile { 
+        width: 100%;
+        margin-top: 40px;
+
+      }
+    }
+
+    .newsletter-form-header-title {
+      font-weight: @lighter;
+      font-style: italic;
+      font-size: 25px;
+      margin: 0 0 30px 0;
+
+      &:before {
+        content: "subscribe to";
+        font-family: @copy;
+        font-weight: @light;
+        font-style: normal;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: @ochre; 
+        font-size: 15px;
+        text-align: center;
+        display: block;
+      }
+    }
+
+    .newsletter-form-header-description {
+      p {
+        font-family: @display;
+        margin: 0 0 40px 0;
+      }
+    }
+  }
+
+  #email-yui_3_17_2_2_1508187351309_9489 {
+    border-bottom: 1px solid @gray02;
+    padding: 6px 3px 0 3px;
+  }
+
+
+  .newsletter-form {
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+      content: "Royal";
+      font-family: @display;
+      font-size: 48px;
+      letter-spacing: 25.48px;
+      text-transform: uppercase;
+      color: @gray03;
+      position: absolute;
+      bottom: -3px;
+      right: 0;
+    }
+  }
+
+  .newsletter-form-body {
+
+    &:before {
+      content: "London 1901";
+      display: block;
+      text-transform: uppercase;
+      font-weight: @bold;
+      letter-spacing: 16px;
+      font-size: 11px;
+      color: @lOchre;
+      -ms-transform: rotate(-90deg); 
+      -webkit-transform: rotate(-90deg); 
+      transform: rotate(-90deg);
+      position: absolute;
+      left: -95px;
+      top: 50%;
+
+      @media @mobile { 
+        opacity: 0.2;
+         left: -106px;
+      }
+    }
+
+
+    &:after {
+      content: "";
+      display: block;
+      width: 166px;
+      height: 113px;
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59eb84f9d0e6283d86860fb4/1508607225217/Stamp.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+    
+    #email-yui_3_17_2_2_1508187351309_9489-field {
+      border: none;
+      padding: 15px 15px 15px 0;
+
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: @gray02;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: @gray02;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: @gray02;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: @gray02;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+    }
+    
+    .newsletter-form-button {
+      .newsletter-form-button-label {
+        font-size: 12px;
+        font-weight: @light;
+      }
+    }
+  }
+}
+
+
+//END: Newsletter Form
+
 //END: Homepage Styles 
 //===============================
 
 
 //Start: About The Author 
+//===============================
 #page-59d92ff64c326d0fa4ac9b95{
+
+
   .image-title {
      em {
-     color: @wine; 
-       font-family: @display;
-       text-align: center;
+     color: @wine;
+     font-family: @display;
+     text-align: center;
+
+     @media @mobile {
+      font-size: 20px;
+     }
+
+
     }
     
     &:nth-child (2) {
@@ -484,6 +981,40 @@ display:flex;
       padding: 20px 0;
       float: left;
       border-color: transparent;
+      opacity: 1;
+      margin-top: 35px;
+
+      &:hover,
+      &:active {
+        transition: @transition;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .sqs-block-image .design-layout-card:not(.sqs-narrow-width) {
+
+    @media @tablet {
+      display: block;
+    }
+  }
+
+  .image-card-wrapper {
+    @media @tablet {
+      width: 100%;
+    }
+  }
+
+  .sqs-block-image .design-layout-card:not(.sqs-narrow-width)>div:first-child {
+    @media @tablet {
+      width: 100%;
+    }
+
+    img {
+       @media @tablet {
+      max-width: 400px;
+      margin: 0 auto;
+    }
     }
   }
 }
@@ -500,7 +1031,7 @@ display:flex;
  .image-inset.content-fill {
     padding-bottom: 0;
     overflow: hidden;
-    height: 200px;
+    height: 192px;
    padding-bottom: 0 !important;
     
     img {
@@ -511,12 +1042,12 @@ display:flex;
 
 #block-yui_3_17_2_3_1507407063461_4461 {
       .image-title-wrapper {
-      p {
-        font-weight: @regular;
-        font-size: 14px;
-        font-family: @copy;
-      }
-        
+        p {
+          font-weight: @regular;
+          font-size: 14px;
+          font-family: @copy;
+        }
+          
         .image-inset.content-fil {
               height: 200px;
           overflow: hidden;
@@ -524,7 +1055,7 @@ display:flex;
         
         img {
           left: 0%;
-        top: 0;
+          top: 0;
           width: 100%;
           height: auto;
           position: absolute;
@@ -533,11 +1064,18 @@ display:flex;
   }
   
   .image-subtitle-wrapper {
+    background: url();
+
     .image-subtitle{
      margin-top: 0; 
     }
+
     p {
-      font-size: 20px !important;
+      font-size: 40px !important;
+
+      @media @mobile {
+        font-size: 20px !important;
+      }
     }
   }
 }
@@ -555,6 +1093,11 @@ display:flex;
 
 #block-yui_3_17_2_3_1507407063461_10009{
   padding: 30px 30px 40px 30px;
+
+  @media @mobile {
+    margin: 0 0 25px 0;
+  }
+
     p {
       text-transform: uppercase;
       text-align: center;
@@ -568,11 +1111,12 @@ display:flex;
     }
 }
 
+
 //END: Blog Banner
 .BlogItem {
   
   blockquote {
-   color: @wine;
+  color: @wine;
   border-color: @wine;
   font-weight: @regular;
   font-family: @display;
@@ -601,25 +1145,51 @@ display:flex;
                  background-size: contain;
          background-position: center;
         background-repeat: no-repeat;
-        
-        // END: ICON Bootmakers
-        //=================
-      }
-      
-      
+      }     
   }
+  
+   // END: ICON Bootmakers
+        //=================
   
       &:nth-child(4) {
       a {
-                background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ff298fd4d22a7ab879ad/1508179753328/lens-dark.png);
-                 background-size: contain;
-         background-position: center;
+        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ff298fd4d22a7ab879ad/1508179753328/lens-dark.png);
+        background-size: contain;
+        background-position: center;
         background-repeat: no-repeat;
-        
+      }     
+  }
         // END: ICON Spence Munroes
         //=================
+  
+  
+        &:nth-child(5) {
+      a {
+        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ffb1e5dd5bfe2f03b2b5/1508179889972/telescope-dark.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }     
+  }
+  
+    // END: ICON MX Publishing
+        //=================
+  
+          &:nth-child(6) {
+            
+            &:hover {
+              background:url();            }
+      a {
+        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e500ea9f07f5a3888aad24/1508180202628/violin-dark.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
       }
   }
+  
+      // END: ICON Sherlockians
+        //=================
+  
 }
 
 
@@ -648,6 +1218,20 @@ background: linear-gradient(180deg, rgba(241,237,229,1) 0%, rgba(255,255,255,1) 
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F1EDE5', endColorstr='#ffffff',GradientType=0 ); /* ie6-9 */
 }
 // END: top gradient -- cream 
+
+
+#block-yui_3_17_2_2_1508187351309_9482 {
+background: rgba(255,255,255,1);
+background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(236,229,211,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(236,229,211,1)));
+background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(236,229,211,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(236,229,211,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(236,229,211,1) 100%);
+background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(236,229,211,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ece5d3', GradientType=1 );
+}
+//END: diagonal gradient
+
 
 .summary-thumbnail, .BlogList-item-image-link {
  
