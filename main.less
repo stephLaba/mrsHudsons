@@ -68,6 +68,7 @@
   color: @ochre;
   font-size: 12px;
   letter-spacing: 2.5px;
+  font-weight: @regular;
   
   &:hover {
     opacity: 0.8;
@@ -121,7 +122,7 @@ p > strong > a{
 
   &:hover,
   &:active {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 }
 
@@ -152,13 +153,83 @@ p > strong > a{
   background-color: transparent;
 }
 
+.BlogList-filter {
+  font-size: 20px;
+  font-family: georgia;
+  font-style: italic;
+  color: @wine;
+}
+
+.Blog-meta.BlogList-item-meta {
+  display: block;
+}
+
 .Blog-meta-item--date {
-  font-weight: @light;
+  font-weight: @regular;
   font-size: 12px;
+  display: block !important;
+}
+
+.Blog-meta-item.Blog-meta-item--categories {
+  display: block !important;
+
+   
+    &:before {
+      content: " " !important;
+      display: none;
+    }
+
+  a {
+    color: @gray02;
+    font-weight: normal;
+    font-size: 12px;
+    font-style: italic;
+    font-family: @display;
+    transition: @transition;
+
+  }
+}
+
+.summary-metadata-item.summary-metadata-item--date {
+  font-weight: @regular;
+}
+
+.Main--blog-item article {
+
+  .Blog-meta.BlogItem-meta {
+    display: block !important;
+  }
+
+  .Blog-meta-item.Blog-meta-item--categories, 
+  .Blog-meta-item.Blog-meta-item--date {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.tweak-blog-item-pagination-link-label-show .BlogItem-pagination-link-label {
+  font-size: 12px !important;
+}
+
+.BlogItem-pagination-link--prev {
+  .BlogItem-pagination-link-label {
+    &:before {
+      content: "←";
+    }
+  }
+}
+
+.BlogItem-pagination-link--next {
+  .BlogItem-pagination-link-label {
+    &:after {
+      content: "→";
+    }
+  }
 }
 
 .Intro {
-  background: @white;
+  background: none !important;
 }
 
 
@@ -369,7 +440,7 @@ display:flex;
   
   .sqs-block-image {
     &:first-child {
-      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d8de13e45a7c0ce23d55a3/1507384858138/Bkg.jpg;) no-repeat;
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59edcf99b1ffb637f0daa1b5/1508757401538/Bkg-min.jpg) no-repeat;
       background-size: cover;
       padding: 30px;
       
@@ -505,7 +576,7 @@ display:flex;
     text-align: center;
     font-size: 20px;
     font-family: @display;
-    color: @gray01;
+    color: @black;
     background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d91508d2b857b11af96ee9/1507398920830/Key--yellow.png) no-repeat;
     background-size: contain;
     background-position: center;
@@ -520,13 +591,13 @@ display:flex;
       font-family: @copy;
       letter-spacing: 2.5px;
       font-style: normal;
-      font-weight: @light;
+      font-weight: @regular;
     }
   }
   
   a {
     float: right;
-    font-weight: @light;
+    font-weight: @regular;
     font-size: 12px;
   }
 }
@@ -583,7 +654,7 @@ display:flex;
 }
 
 #block-yui_3_17_2_14_1507391788589_29356,  {
-  background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d9230ce9bfdf464d3a7481/1507402517793/Bkg_faded.png) no-repeat;
+  background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59edcfea8fd4d2f6470f0c4a/1508757484783/Bkg_faded-min.png) no-repeat;
   background-size: 70%;
   
     @media @tablet {
@@ -650,7 +721,7 @@ display:flex;
       letter-spacing:@link-spacing;
       width: 100%;
       float: left;
-      font-weight: @light;
+      font-weight: @regular;
       font-size: 12px !important;
   }
 }
