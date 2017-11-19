@@ -91,6 +91,8 @@
 
 @mobile:      ~"only screen and (max-width: 529px)";
 
+@landscape:      ~"only screen and (max-width: 729px)";
+
 @tablet:      ~"only screen and (max-width: 949px)";
 
 @desktop:     ~"only screen and (max-width: 1128px)";
@@ -746,19 +748,20 @@ display:flex;
   background-image:url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e528e7f09ca459f2c8493c/1508190444034/british_street.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 350px;
+  min-height: 400px;
   background-position: center;
   background-attachment: fixed;
 
   @media mobile {
     background-attachment: scroll;
+    min-height: 450px;
   }
   
 } 
 
 .section--sherlock {
   .inner-wrapper {
-    width: 561px;
+    width: 800px;
     margin: 0 auto;
     padding: 3%;
     position: absolute;
@@ -766,7 +769,7 @@ display:flex;
     left: 50%;
     transform: translate(-50%, -50%);
 
-     @media @mobile {
+     @media @landscape {
       width: 80%;
       margin: 0 auto;
       padding: 70px 0 40px 0;
@@ -786,7 +789,7 @@ display:flex;
       font-family: @display;
       font-style: italic;
       font-weight: @lighter;
-      margin: 10px 0 40px 0;
+      margin: 10px 0 50px 0;
     }
 
     .one {
@@ -817,9 +820,9 @@ display:flex;
       width: 25%;
       float: left;
 
-         @media @mobile {
+         @media @landscape {
           width: 50%;
-          margin-bottom: 30px;
+          margin-bottom: 40px;
 
           &:last-child {
             margin-bottom: none;
@@ -830,7 +833,7 @@ display:flex;
           }
            
            a {
-             max-width: 85px;
+             max-width: 60%;
              margin: 0 auto;
            }
         }
@@ -1048,12 +1051,17 @@ display:flex;
     
     a {
       text-align: center;
-      width: 48%;
+      width: 35%;
       padding: 20px 0;
       float: left;
       border-color: transparent;
       opacity: 1;
-      margin-top: 35px;
+      margin-bottom: 35px;
+
+      @media @mobile {
+        width: 48%;
+        min-width: 137px;
+      }
 
       &:hover,
       &:active {
@@ -1135,7 +1143,7 @@ display:flex;
   }
   
   .image-subtitle-wrapper {
-    background: url();
+
 
     .image-subtitle{
      margin-top: 0; 
@@ -1190,7 +1198,7 @@ display:flex;
   color: @wine;
   border-color: @wine;
   font-weight: @regular;
-  font-family: @display;
+  font-family: @copy;
   font-style: italic;
   text-align: center;
   font-size: 25px;
@@ -1207,61 +1215,78 @@ display:flex;
 //START: Icon Bar
 //=============================
 
-
-#page-59d92ff64c326d0fa4ac9b95 .image-subtitle-wrapper p {
-  
-    &:nth-child(3) {
-      a {
-        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4fb6751a584975d309aa4/1508178791182/pipe-dark.png);
-                 background-size: contain;
-         background-position: center;
-        background-repeat: no-repeat;
-      }     
-  }
-  
-   // END: ICON Bootmakers
-        //=================
-  
-      &:nth-child(4) {
-      a {
-        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ff298fd4d22a7ab879ad/1508179753328/lens-dark.png);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-      }     
-  }
-        // END: ICON Spence Munroes
-        //=================
-  
-  
-        &:nth-child(5) {
-      a {
-        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ffb1e5dd5bfe2f03b2b5/1508179889972/telescope-dark.png);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-      }     
-  }
-  
-    // END: ICON MX Publishing
-        //=================
-  
-          &:nth-child(6) {
-            
-            &:hover {
-              background:url();            }
-      a {
-        background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e500ea9f07f5a3888aad24/1508180202628/violin-dark.png);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-  }
-  
-      // END: ICON Sherlockians
-        //=================
-  
+#block-yui_3_17_2_8_1511100363370_4886 {
+  padding: 0;
 }
+
+.section.section--sherlock.section--sherlock-author {
+
+  .inner-wrapper {
+    position: static;
+    transform: none;
+    width: 100%;
+    padding: 0 3%;
+
+     @media @landscape {
+      padding: 0;
+    }
+  }
+
+  .fourth {
+     @media @mobile {
+      width: 100%;
+    }
+
+    a {
+      color: @ochre;
+      font-style: italic;
+
+       @media @landscape {
+        min-width: auto;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    &.one a {
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4fb6751a584975d309aa4/1508178791182/pipe-dark.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    //END: Bootmakers
+
+    &.two a {
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ff298fd4d22a7ab879ad/1508179753328/lens-dark.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    //END: SH Society of London 
+
+    &.three a {
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e4ffb1e5dd5bfe2f03b2b5/1508179889972/telescope-dark.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    // END: BS Irregulars 
+
+    &.four a {
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59e500ea9f07f5a3888aad24/1508180202628/violin-dark.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    // END: Publishing
+  }
+
+}
+
+
 
 
 //START: Gradients
