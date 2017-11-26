@@ -34,6 +34,7 @@
 @gray01: #5A5B68;
 @gray02: #9B9B9B;
 @gray03: #F2F1F0;
+@gray04: #F2F1F0;
 
 //Colors End
 
@@ -230,6 +231,28 @@ p > strong > a{
   }
 }
 
+.Main--blog-item .sqs-block.sqs-block-html .sqs-block-content {
+  max-width: 70%;
+  margin: 0 auto;
+
+  @media @landscape {
+    max-width: 85%;
+  }
+}
+
+.Main--blog-item article .Blog-meta-item.Blog-meta-item--date {
+  &:after {
+    content:"";
+    display: block;
+    width: 58px;
+    height: 10px;
+    margin: 0 auto;
+    background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/5a1ac7c9652dea2e1a599325/1511704521450/embellishment.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
 .Intro {
   background: none !important;
 }
@@ -418,6 +441,10 @@ display:flex;
   
   .sqs-block {
     padding: 30px;
+
+      @media @mobile {
+      padding: 40px; 
+      }
   }
 }
 
@@ -838,6 +865,7 @@ display:flex;
            }
         }
 
+
       a {
         font-family: @display;
         color: @white;
@@ -850,9 +878,15 @@ display:flex;
         background-position: center;
         background-repeat: no-repeat;
         height: 35px;
+        font-style: italic;
 
         &:hover {
           opacity: 0.5;
+        }
+
+        @media @mobile { 
+            max-width: 100%;
+            padding: 20px 10px;
         }
       }
     }
@@ -915,11 +949,6 @@ display:flex;
     }
   }
 
-  #email-yui_3_17_2_2_1508187351309_9489 {
-    border-bottom: 1px solid @gray02;
-    padding: 6px 3px 0 3px;
-  }
-
 
   .newsletter-form {
     position: relative;
@@ -977,7 +1006,13 @@ display:flex;
     
     #email-yui_3_17_2_2_1508187351309_9489-field {
       border: none;
-      padding: 15px 15px 15px 0;
+      padding: 15px;
+      background: @gray04;
+      border: 1px solid @gray04;
+
+      &:focus {
+        background: lighten(@gray04, 10%);
+      }
 
       &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
         color: @gray02;
