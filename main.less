@@ -116,6 +116,11 @@ body {
 
 //solves horizontal scrolling bug on desktop
 
+.tweak-site-width-option-full-background .Intro-content, .tweak-site-width-option-full-background .Main-content, .tweak-site-width-option-full-background .Footer-inner, .tweak-site-width-option-full-background .Index-page-content {
+  max-width: 100%;
+}
+// makes site full bleed
+
 
 a,  
 p a,
@@ -264,14 +269,145 @@ p > strong > a{
 }
 
 .Footer-inner {
-  background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d92b3bf43b55edb9380416/1507404603515/key--white.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
+    background-image: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/59d92b3bf43b55edb9380416/1507404603515/key--white.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    margin: 100px 0 0 0;
+
+    @media @landscape {
+      margin: 0;
+    }
   }
 
-.Footer-middle, #footerBlocksTop {
+.sqs-block.socialaccountlinks-v2-block.sqs-block-socialaccountlinks-v2 {
+   margin: -100px 0 0 0;
+
+    @media @landscape {
+      margin: 0;
+    }
+}
+
+.Footer-middle {
   display: none;
+}
+
+footer.Footer {
+  position: relative;
+}
+
+// FOOTER BAR Start 
+// ====================================
+
+// .Footer-blocks--top {
+//   display: none;
+// }
+ 
+#block-yui_3_17_2_2_1512386825107_10515{
+  position: static;
+
+  @media @landscape {
+    display: none;
+  }
+}
+
+.footer-book-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: @wine;
+  border-top: 3px solid @ochre;
+  border-bottom: 3px solid @ochre;
+
+  .inner-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  img{
+    display: block;
+    position: absolute;
+    top: -85px;
+    width: 143px;
+    height: auto;
+  }
+
+  .container__copy {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+
+    &:before {
+      content:"";
+      background: url(https://static1.squarespace.com/static/59b6883e12abd93aa2c3f86c/t/5a253047419202014edd10b8/1512386632237/mrsH_paperback_small.png);
+      width: 130px;
+      height: 243.02px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: block;
+      position: absolute;
+      left: -25px;
+      top: -49px;
+    }
+
+    h4 {
+      color: @white;
+      opacity: 0.75;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      font-weight: @bold;
+      position: relative;
+      display: block;
+      margin: 0;
+    }
+
+    button {
+      margin: 10px 0 0 0;
+      border: 1px solid @white;
+      border-radius: 0;
+      color: white;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: @bold;
+      letter-spacing: 2.5px;
+      background: none;
+      transition: @transition;
+      display: none;
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+
+
+      li {
+        display: inline;
+
+        padding: 2px 5px 0 5px;
+
+        a {
+          color: @ochre;
+          font-weight: @regular;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: @regular;
+          padding: 10px;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+  }
+
+
+
 }
 
 // Mobile Nav: Start
